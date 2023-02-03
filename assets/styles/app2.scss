@@ -1,0 +1,11 @@
+@import "prudhome.scss";
+@import "~bootstrap/scss/bootstrap";
+@mixin grid {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 9px;
+}
+
+
+body {
+    background-color: black !important;
+}

@@ -1,0 +1,87 @@
+{% extends 'base.rounorama.html.twig' %}
+
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <header>
+        <div class="first-div-header">
+            <img class="logo" src="{{ asset('pictories/logos/RounoramaIcon.png') }}" alt="rounorama"/>
+        </div>
+        <div class="third-div-header">
+            <button>Contact</button>
+            <button>Compte</button>
+        </div>
+        <div class="second-div-header">
+            <button>Menu</button>
+        </div>
+    </header>
+
+<div class="main-wrapper">
+    <div class="first-div-accueil">
+        <h1 class="mb-3">A la poursuite de l'histoire, là où l'art prend vie.</h1>
+    </div>
+    <div id="carouselExampleControls" data-bs-interval="false" class="carousel slide bg-dark" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item w-20 " data-bs-interval="3000">
+                <img src="{{ asset('pictories/city.png') }}" class="d-block w-50 m-auto" alt="...">
+            </div>
+            <div class="carousel-item w-20 active" data-bs-interval="3000">
+                <img src="{{ asset('pictories/rounorama/nature.png') }}" class="d-block w-50 m-auto" alt="...">
+            </div>
+            <div class="carousel-item w-20" data-bs-interval="3000">
+                <img src="{{ asset('pictories/newArt.png') }}" class="d-block w-50 m-auto" alt="...">
+            </div>
+            <div class="carousel-item w-20" data-bs-interval="3000">
+                <img src="{{ asset('pictories/paysage.png') }}" class="d-block w-50 m-auto" alt="...">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    
+    <div class="second-main-div">
+        <p class="mb-5">Notre collection</p>
+
+        <div class="first-div-tab">
+            <img class="painting painting1" src="{{ asset('pictories/rounorama/tableau1.png') }}">
+            <p class="paraph1">L'art, c'est la création propre à l'homme. L'art est le produit nécessaire et fatal d'une intelligence limitée, comme la nature est le produit nécessaire et fatal d'une intelligence infinie. L'art est à l'homme ce que la nature est à Dieu. <span>Victor Hugo</span></span></p>
+        </div>
+
+        <div class="second-div-tab">
+            <p class="paraph2"> À quoi vise l’art ? Sinon à montrer, dans la nature même et dans l’esprit, hors de nous et en nous, des choses qui ne frappaient pas explicitement nos sens et notre conscience ? Le poète et le romancier qui expriment un état d’âme ne le créent certes pas de toutes pièces ; ils ne seraient pas compris de nous si nous n’observions pas en nous, jusqu’à un certain point, ce qu’ils nous disent d’autrui<span>Henri Bergson</span></p>
+            <img class="painting painting2" src="{{ asset('pictories/rounorama/tableau2.png') }}">
+        </div>
+        <div class="third-div-tab">
+            <img class="painting painting3" src="{{ asset('pictories/rounorama/tableau3.png') }}">
+            <a href="{{ path('app_register') }}">test</a>
+            <p class="paraph3">Les voyages interplanétaires semblent être <strong>(ce que vous cherchez se cache dans l'art côté jardin)</strong>  l'un des tous premiers pas vers le soi-disant « progrès scientifique » et pourtant en dernière analyse, il ne s'agit que d'un agrandissement du territoire mis à la disposition de l'homme.<span>Marcel Duchamps</span></p>
+        </div>
+
+
+        <footer>
+            <div class="first-div-footer">
+                <span>Nous contacter</span>
+                <span>Notre histoire</span>
+                <span>Mentions légales</span>
+            </div>
+
+            <div class="second-div-footer">
+                <span>Création ESGI 4IW1</span>
+                <img class="logo" src="{{ asset('pictories/logos/RounoramaIcon.png') }}" alt="rounorama"/>
+            </div>
+
+        </footer>
+
+
+    </div>
+</div>
+{% endblock %}

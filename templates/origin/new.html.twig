@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Origin{% endblock %}
+
+{% block body %}
+    <h1>Create new Origin</h1>
+
+    {{ include('origin/_form.html.twig') }}
+
+    <a href="{{ path('app_origin_index') }}">back to list</a>
+{% endblock %}

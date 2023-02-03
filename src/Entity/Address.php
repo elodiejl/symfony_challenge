@@ -14,13 +14,13 @@ class Address
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $Number_street = null;
+    private ?int $number_street = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name_street = null;
 
     #[ORM\Column]
-    private ?int $local_code = null;
+    private ?string $local_code = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
@@ -35,12 +35,12 @@ class Address
 
     public function getNumberStreet(): ?int
     {
-        return $this->Number_street;
+        return $this->number_street;
     }
 
-    public function setNumberStreet(int $Number_street): self
+    public function setNumberStreet(int $number_street): self
     {
-        $this->Number_street = $Number_street;
+        $this->number_street = $number_street;
 
         return $this;
     }
@@ -57,12 +57,12 @@ class Address
         return $this;
     }
 
-    public function getLocalCode(): ?int
+    public function getLocalCode(): ?string
     {
         return $this->local_code;
     }
 
-    public function setLocalCode(int $local_code): self
+    public function setLocalCode(string $local_code): self
     {
         $this->local_code = $local_code;
 

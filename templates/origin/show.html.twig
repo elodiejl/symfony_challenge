@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Origin{% endblock %}
+
+{% block body %}
+    <h1>Origin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ origin.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ origin.label }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ origin.city }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_origin_index') }}">back to list</a>
+
+    <a href="{{ path('app_origin_edit', {'id': origin.id}) }}">edit</a>
+
+    {{ include('origin/_delete_form.html.twig') }}
+{% endblock %}
