@@ -1,21 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.formulaire.html.twig' %}
 
 {% block title %}Changez votre mot de passe{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class = "formLogin">
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Changez votre mot de passe</h1>
-
+    <h1 class="formTitle">Changez votre mot de passe</h1>
+    <div class="formulaire">
     {{ form_start(requestForm) }}
         {{ form_row(requestForm.email) }}
-        <div>
+        <div class="text-center">
             <small>
                 Entrez votre mail et nous vous enverrons un lien pour le changer.
             </small>
         </div>
-
-        <button class="btn btn-primary">Envoyer l'email</button>
+        <div class="formulaireSubmit">
+            <button class="btn btn-primary">Envoyer l'email</button>
+        </div>
     {{ form_end(requestForm) }}
+    </div>
+    </div>
+    </div>
 {% endblock %}

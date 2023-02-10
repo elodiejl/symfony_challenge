@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: linear-gradient(-135deg,#c850c0, #4158d0);
+}
+
+.formLogin {
+    width: 960px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 177px 130px 33px 95px;
+}
+
+.formLoginIcon {
+    max-width: 100%;
+}
+
+.formForm {
+    width: 290px;
+}
+
+.formTitle {
+    font-size: 24px;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+}
+
+.formulaire, .formulaireCheckbox{
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.formulaire > input{
+    outline: none;
+    border: none;
+    overflow: visible;
+}
+
+.formulaireSubmit > button {
+    outline: none;
+    border: none;
+}
+
+.form-control {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+}
+
+.symbol-input {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    pointer-events: none;
+    color: #666;
+    transition: all .4s;
+}
+
+.formulaireSubmit {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.formBtn {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: rgba(255, 145, 77, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    transition: all 0.4s;
+}
+
+.text-center {
+    width: 100%;
+    padding-top: 12px;
+    text-align: center !important;
+}
+
+.text-padding-top {
+    padding-top: 136px;
+}
+
+.textReminder {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666;
+}

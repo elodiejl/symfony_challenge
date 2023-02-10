@@ -34,9 +34,11 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/vendor, roles: ROLE_VENDOR }
+         - { path: ^/buyer, roles: ROLE_BUYER }
 
     role_hierarchy:
-        ROLE_VENDOR: ROLE_USER
+        ROLE_VENDOR: ROLE_USER;
+        ROLE_BUYER: ROLE_USER;
 
 when@test:
     security:

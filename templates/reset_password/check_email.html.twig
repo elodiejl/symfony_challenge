@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.formulaire.html.twig' %}
 
 {% block title %}Changer votre mot de passe oublié{% endblock %}
 
 {% block body %}
-    <p>
-        Si votre mail correspond à un compte, alors un mail a été envoyé sur ce mail et vous recevrez un lien pour changer votre mot de passe.
-        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>Si vous ne recevez pas de mail, veuillez vérifiez vos spams ou <a href="{{ path('app_forgot_password_request') }}"> essayez à nouveau</a>.</p>
+    <div class="container">
+        <div class = "formLogin">
+        <p>
+            Si votre mail correspond à un compte, alors un mail a été envoyé sur ce mail et vous recevrez un lien pour changer votre mot de passe.
+            Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </p>
+        <p>Si vous ne recevez pas de mail, veuillez vérifiez vos spams ou <a href="{{ path('app_forgot_password_request') }}"> essayez à nouveau</a>.</p>
+        </div>
+    </div>
 {% endblock %}

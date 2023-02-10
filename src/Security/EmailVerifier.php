@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
@@ -35,13 +36,19 @@ class EmailVerifier
 
         $email->context($context);
 
+        $params = ['prenom' => $user->getFirstname(), 'link' => $context['signedUrl']];
+
+        $email->getHeaders()
+            ->add(new TagHeader('registration-confirm'))
+            ->addTextHeader('templateId', 2)
+            ->addParameterizedHeader('params', 'params', $params);
+
 
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             // some error prevented the email sending; display an
             // error message or try to resend the message
-            dd($e);
         }
 
 

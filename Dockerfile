@@ -10,6 +10,9 @@ ARG CADDY_VERSION=2
 # Prod image
 FROM php:${PHP_VERSION}-fpm-alpine AS app_php
 
+USER root
+
+
 # Allow to use development versions of Symfony
 ARG STABILITY="stable"
 ENV STABILITY ${STABILITY}
@@ -29,9 +32,13 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
+        libpng-dev \
         linux-headers \
         npm \
 	;
+
+RUN apk update
+RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -39,6 +46,7 @@ RUN set -eux; \
 		icu-data-full \
 		icu-dev \
 		libzip-dev \
+        libpng-dev \
 		zlib-dev \
 	; \
 	\
@@ -76,6 +84,7 @@ RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
 ###< recipes ###
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 COPY docker/php/conf.d/app.ini $PHP_INI_DIR/conf.d/
 COPY docker/php/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/
 
@@ -122,6 +131,8 @@ RUN set -eux; \
 
 # Dev image
 FROM app_php AS app_php_dev
+
+USER root
 
 ENV APP_ENV=dev XDEBUG_MODE=off
 VOLUME /srv/app/var/

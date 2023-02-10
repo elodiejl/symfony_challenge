@@ -75,6 +75,9 @@ Installation npm
 
 `docker compose exec php npm install`
 
+`docker compose exec php npm i bootstrap-icons`
+
 `docker compose exec php npm run build`
 
 `docker compose exec php npm run watch`
+

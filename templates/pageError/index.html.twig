@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}404 - Wrong Path{% endblock %}
 
 {% block body %}
 <style>
@@ -15,7 +15,7 @@
         </div>
         <h2> Nous sommes désolés, la page n'a pas été trouvé ! </h2>
         <p> La page que vous cherchez n'existe pas,a été déplacé ou se trouve être temporairement inaccessible
-            <a href={{ path('app_rounorama_home') }}>.</a>
+            <a href={{ path('app_login') }}>.</a>
          </p>
 
         <a href="{{ path('app_logout') }}">Retourner sur la page d'accueil</a>

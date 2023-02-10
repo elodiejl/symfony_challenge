@@ -26,6 +26,7 @@
                 <td>{{ art.height }}</td>
                 <td>{{ art.artist }}</td>
                 <td>{{ art.price }}</td>
+                <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="test"></td>
                 <td>
                     <a href="{{ path('admin_art_show', {'id': art.id}) }}">show</a>
                     <a href="{{ path('admin_art_edit', {'id': art.id}) }}">edit</a>

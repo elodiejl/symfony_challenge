@@ -1,0 +1,15 @@
+@import "formulaire.scss";
+@import "glitch.scss";
+@import "glitch2.scss";
+@import "~bootstrap/scss/bootstrap";
+@mixin grid {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 9px;
+}
+
+
+body {
+    background-color: black !important;
+    background-image: url("/public/pictories/rounorama/fond.png");
+    background-size: cover;
+}

@@ -5,10 +5,15 @@ namespace App\Controller\Admin;
 use App\Entity\Art;
 use App\Form\ArtType;
 use App\Repository\ArtRepository;
+use App\Service\PictureService;
+use App\Service\PictureUpload;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/art', name:'admin_art_')]
 
@@ -22,17 +27,30 @@ class ArtController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws Exception
+     */
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ArtRepository $artRepository): Response
+    public function new(Request $request, ArtRepository $artRepository, PictureUpload $pictureUpload, SluggerInterface $slugger): Response
     {
         $art = new Art();
         $form = $this->createForm(ArtType::class, $art);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $artRepository->save($art, true);
 
+
+
+            $picture = $form->get('imageFile')->getData();
+
+
+            if ($picture) {
+                    $pictureFileName = $pictureUpload->upload($picture);
+                    $art->setImageFile($pictureFileName);
+            }
+            $artRepository->save($art, true);
             return $this->redirectToRoute('admin_art_index', [], Response::HTTP_SEE_OTHER);
+            // ... persist the $product variable or any other work
         }
 
         return $this->render('admin/art/new.html.twig', [

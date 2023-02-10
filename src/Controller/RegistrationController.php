@@ -10,6 +10,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,13 +45,18 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+
+
+            $email = (new TemplatedEmail())
+                ->to($user->getEmail())
+                ->subject('Confirmer votre mail')
+                ->htmlTemplate('registration/confirmation_email.html.twig');
+
+
+
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('rounorama-rounard@outlook.fr', 'rounorama mail contact'))
-                    ->to($user->getEmail())
-                    ->subject('Confirmer votre mail')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email
+
             );
             // do anything else you need here, like send an email
 
