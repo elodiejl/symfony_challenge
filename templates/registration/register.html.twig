@@ -1,31 +1,61 @@
 {% extends 'base.formulaire.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
+
     <div class="container">
         <div class = "formLogin">
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
 
-    <h1 class="formTitle">Register</h1>
-    <div class="formulaire">
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.pseudo) }}
-        {{ form_row(registrationForm.birthday) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
+            <img class="formLoginLogo" class="mb-4" src="{{ asset('pictories/logos/ThibouIcon.png') }}" alt="thibou" width="72" height="72">
+            <h1 class="formTitle">Inscription</h1>
+
+            <div class="formulaire">
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.firstname, {label: 'Prénom'}) }}
+                    {{ form_row(registrationForm.lastname, {label: 'Nom'}) }}
+                    {{ form_row(registrationForm.pseudo) }}
+
+                    <div class="form-group">
+                        {{ form_label(registrationForm.birthday,'Date de naissance') }}
+
+                        <div class="datepicker date input-group">
+                            {{ form_widget(registrationForm.birthday, {'attr' : {'placeholder' : '01/01/2005'}}) }}
+                            <div class="input-group-text px-lg-4"><span ><i class="fa fa-calendar"></i></span></div>
+                        </div>
+
+                    </div>
+
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe'}) }}
+            </div>
+
+                <div class="formulaireSubmit">
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
     </div>
-    <div class="formulaireSubmit">
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
-    </div>
-    {{ form_end(registrationForm) }}
-    </div>
-    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#registration_form_birthday').datepicker({
+                isRTL: true,
+                autoclose: true,
+                language: 'fr',
+                format: "dd/mm/yyyy",
+                clearBtn: true,
+                endDate: '-18y'
+            });
+        });
+
+    </script>
+
 {% endblock %}

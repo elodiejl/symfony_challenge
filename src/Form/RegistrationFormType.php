@@ -25,7 +25,8 @@ class RegistrationFormType extends AbstractType
             ->add('pseudo', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => "StudioBubbleMeliMelo"]])
             ->add('birthday', BirthdayType::class, [
                 'widget' => "single_text",
-                'attr' => ['class' => "form-control"]
+                'attr' => ['class' => "form-control"],
+                'html5' => false
             ])
             ->add('email', EmailType::class, ['attr' => ['class' => 'form-control', 'placeholder' => "MeliMelo@studio.bubble"]])
             ->add('plainPassword', PasswordType::class, [
