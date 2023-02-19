@@ -51,6 +51,7 @@
 
                         <div class="card col m-3" style="width: 18rem;">
                             <img src="{{ asset('uploads/arts/' ~ art.imageFile) }}" class="card-img-top" alt="...">
+                            {% if art.sold is same as false %}
                             <div class="card-body">
                                 <h5 class="card-title">{{  art.label }}</h5>
                                 <p class="card-text">{{ art.description }}</p>
@@ -60,6 +61,17 @@
                                 <a href="{{ path('buyer_cart_add', {'id': art.id}) }}" class="btn btn-primary">Ajouter au panier</a>
                                 <a class="btn btn-primary" href="{{ path('app_art_show', {'id': art.id}) }}">Voir les détails</a>
                             </div>
+                            {% endif %}
+                            {% if art.sold is same as true %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{  art.label }}</h5>
+                                    <p class="card-text">{{ art.description }}</p>
+                                    <p class="card-text">{{ art.height }} de hauteur</p>
+                                    <p class="card-text"> De {{ art.artist }} </p>
+                                    <p class="card-text">VENDUE!</p>
+
+                                </div>
+                            {% endif %}
                         </div>
 
                     {% else %}

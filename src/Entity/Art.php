@@ -43,6 +43,9 @@ class Art
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFile = null;
 
+    #[ORM\Column]
+    private ?bool $sold = null;
+
 
 
     public function __construct()
@@ -177,6 +180,18 @@ class Art
     public function setImageFile(?string $imageFile): self
     {
         $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function isSold(): ?bool
+    {
+        return $this->sold;
+    }
+
+    public function setSold(bool $sold): self
+    {
+        $this->sold = $sold;
 
         return $this;
     }
