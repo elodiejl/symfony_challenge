@@ -22,11 +22,11 @@ class UserType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('birthday', BirthdayType::class,[
-                "widget" => "single-text"
+                "widget" => "single_text"
             ])
             ->add('pseudo', TextType::class)
             ->add('is_verified')
-            ->add('address')
+            ->add('address', AddressType::class)
         ;
     }
 
