@@ -29,6 +29,7 @@
                         <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -77,10 +78,18 @@
                 <th>Is_verified</th>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
             </tr>
+            <tr>
+                <th>vendeur</th>
+                <td>{{ user.expectation ? 'Yes' : 'No' }}</td>
+            </tr>
         </tbody>
     </table>
 
-
+    {% if user.expectation is same as true %}
+        <button type="button" class="btn btn-primary" disabled>Votre demande est en cours de traitement</button>
+    {% elseif user.expectation is same as false %}
+        <a class="btn btn-primary" href="{{ path('app_buyer_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Primary link</a>
+    {% endif %}
     <a href="{{ path('app_buyer_edit', {'id': user.id}) }}">edit</a>
 
     {{ include('buyer/profile/_delete_form.html.twig') }}

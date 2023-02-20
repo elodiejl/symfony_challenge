@@ -45,5 +45,18 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    #[Route('{id}/vendor', name: 'vendor', methods: ['GET', 'POST'])]
+    public function becomeVendor(Request $request, User $user, UserRepository $userRepository): Response
+    {
+         $user->setExpectation(true);
+
+            $userRepository->save($user, true);
+
+
+        return $this->render('/buyer/profile/show.html.twig', [
+            'user' => $user
+        ]);
+    }
+
 
 }

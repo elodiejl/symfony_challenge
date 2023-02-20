@@ -23,6 +23,8 @@
         </thead>
         <tbody>
         {% for user in users %}
+
+
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
@@ -43,6 +45,10 @@
                 <td>
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    {% if user.expectation is same as true %}
+                        <a class="btn btn-success " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Valider la demande vendeur</a>
+                        <a class="btn btn-danger " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Refuser la demande vendeur</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

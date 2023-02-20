@@ -27,6 +27,7 @@ class UserFixtures extends Fixture
             ->setPseudo('Rounard')
             ->setRoles(["ROLE_ADMIN"])
             ->setIsVerified(true)
+            ->setExpectation(false)
             ->setAddress($faker->randomElement($address))
         ;
         $manager->persist($object);
@@ -40,6 +41,7 @@ class UserFixtures extends Fixture
                 ->setBirthday(new \DateTime($faker->date('Y-m-d', '2005-01-01')))
                 ->setPseudo($faker->userName)
                 ->setIsVerified(false)
+                ->setExpectation(false)
                 ->setAddress($faker->randomElement($address))
             ;
             $manager->persist($object);
@@ -57,6 +59,7 @@ class UserFixtures extends Fixture
                 ->setPseudo($faker->userName)
                 ->setRoles(["ROLE_VENDOR"])
                 ->setIsVerified(true)
+                ->setExpectation(false)
                 ->setAddress($faker->randomElement($address))
             ;
             $manager->persist($object);
@@ -72,6 +75,7 @@ class UserFixtures extends Fixture
                 ->setPseudo($faker->userName)
                 ->setRoles(["ROLE_BUYER"])
                 ->setIsVerified(true)
+                ->setExpectation(false)
                 ->setAddress($faker->randomElement($address))
             ;
             $manager->persist($object);
