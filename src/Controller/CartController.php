@@ -85,13 +85,17 @@ class CartController extends AbstractController
         $dataCart= [];
         $total = 0;
 
+
         foreach ($cart as $id => $quantity){
             $art = $artRepository->find($id);
+            $art->setSold(true);
             $dataCart[] = [
                 "oeuvre" => $art,
                 "quantity" => $quantity
             ];
             $total += $art->getPrice() * $quantity;
+            $artRepository->save($art, true);
+
         };
 
         Stripe\Stripe::setApiKey($_ENV["STRIPE_SECRET"]);

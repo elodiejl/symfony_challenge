@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Art;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,12 @@ class ArtType extends AbstractType
             ->add('artist')
             ->add('price')
             ->add('category')
+            ->add('sold', ChoiceType::class, [
+                'choices'  => [
+                    'Mettre en vente' => false,
+                    'Indiquer comme vendue' => true,
+                ],
+            ])
             ->add('imageFile', FileType::class, [
                 'label' => '',
 
