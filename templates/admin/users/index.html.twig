@@ -1,57 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1>Liste des utilisateurs</h1>
 
-    <table class="table">
+    <table class="table table-hover table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Birthday</th>
+                <th>Prénom</th>
+                <th>Nom</th>
                 <th>Pseudo</th>
-                <th>Address</th>
-                <th>Is_verified</th>
+                <th>Email</th>
+                <th>Date de naissance</th>
+                <th>Role</th>
+                <th>Compte validé par l'utilisateur</th>
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
         {% for user in users %}
+
+
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
-                <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
                 <td>{{ user.pseudo }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birthday ? user.birthday|date('d/m/Y') : '' }}</td>
                 <td>
-                    {% for address in user.address  %}
-                        {{ address.number_street }}
-                        {{ address.name_street }}
-                        {{ address.local_code }}
+                    {% for role in user.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                            <span class="badge rounded-pill text-bg-primary">Admin</span>
+                        {% elseif role == 'ROLE_VENDOR'  %}
+                            <span class="badge rounded-pill text-bg-info">Vendeur</span>
+                        {% elseif role == 'ROLE_BUYER'%}
+                            <span class="badge rounded-pill text-bg-success">Acheteur</span>
+                        {% elseif role == 'ROLE_USER'  %}
+                            <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% endif %}
                     {% endfor %}
                 </td>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    {% if user.expectation is same as true %}
+                        <a class="btn btn-success " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Valider la demande vendeur</a>
+                        <a class="btn btn-danger " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Refuser la demande vendeur</a>
+                    {% endif %}
+
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button">Activer</a>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-eye" title="Afficher"></i></a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun utilisateur trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('admin_user_new') }}">Create new</a>
+    <a href="{{ path('admin_user_new') }}" class="btn btn-sm btn-primary" role="button"><i class="bi bi-person-add"></i> Nouveau utilisateur</a>
 {% endblock %}

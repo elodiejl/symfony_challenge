@@ -34,6 +34,12 @@ body {
     max-width: 100%;
 }
 
+.formLoginLogo {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
 .formForm {
     width: 290px;
 }
@@ -131,4 +137,8 @@ body {
     font-size: 13px;
     line-height: 1.5;
     color: #666;
+}
+
+.datepicker{
+    padding: 0px !important;
 }
