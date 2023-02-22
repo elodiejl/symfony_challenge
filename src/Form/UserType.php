@@ -25,8 +25,10 @@ class UserType extends AbstractType
                 "widget" => "single_text"
             ])
             ->add('pseudo', TextType::class)
-            //->add('is_verified')
-            //->add('address')
+            ->add('is_verified')
+            ->add('expectation')
+            ->add('address', AddressType::class)
+
         ;
     }
 

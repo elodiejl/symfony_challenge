@@ -76,4 +76,18 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/vendor', name: 'vendor', methods: ['GET', 'POST'])]
+    public function becomeVendor(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $user->setExpectation(false);
+        $user->setRoles(['ROLE_VENDOR']);
+
+        $userRepository->save($user, true);
+
+
+        return $this->render('/admin/users/index.html.twig', [
+            'user' => $user
+        ]);
+    }
 }

@@ -20,6 +20,8 @@
         </thead>
         <tbody class="table-group-divider">
         {% for user in users %}
+
+
             <tr>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
@@ -41,6 +43,13 @@
                 </td>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
                 <td>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    {% if user.expectation is same as true %}
+                        <a class="btn btn-success " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Valider la demande vendeur</a>
+                        <a class="btn btn-danger " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Refuser la demande vendeur</a>
+                    {% endif %}
+
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button">Activer</a>
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-eye" title="Afficher"></i></a>
                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
