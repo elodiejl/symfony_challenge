@@ -18,7 +18,7 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             //->add('roles')
-            ->add('password')
+            //->add('password')
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('birthday', BirthdayType::class,[
@@ -28,6 +28,7 @@ class UserType extends AbstractType
             ->add('is_verified')
             ->add('expectation')
             ->add('address', AddressType::class)
+
         ;
     }
 
