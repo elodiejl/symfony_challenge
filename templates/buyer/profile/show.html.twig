@@ -71,8 +71,14 @@
                 <td>{{ user.pseudo }}</td>
             </tr>
             <tr>
-                <th>Adress</th>
-                <td>{{ user.address }}</td>
+                <th>Adresse</th>
+                <td>
+                    {% for address in user.address  %}
+                        {{ address.number_street }}
+                        {{ address.name_street }}
+                        {{ address.local_code }}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Is_verified</th>
