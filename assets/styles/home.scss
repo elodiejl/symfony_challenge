@@ -273,3 +273,16 @@ a.hidden:hover {
   text-decoration: none;
   cursor: context-menu;
 }
+
+img.card-img-top {
+  height: 15rem;
+  width: 16.5rem;
+
+}
+.watermark {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  opacity: 0.6;
+  transform: rotate(45deg);
+}
