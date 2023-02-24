@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Art index{% endblock %}
+{% block title %}Galerie d'art{% endblock %}
 
 {% block body %}
-    <h1>Art index</h1>
+    <h1>Catalogue Oeuvre d'Art</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Label</th>
+                <th>#</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>Height</th>
-                <th>Artist</th>
-                <th>Price</th>
-                <th>actions</th>
+                <th>Taille</th>
+                <th>Artiste</th>
+                <th>Prix</th>
+                <th>Oeuvre</th>
+                <th>Droits</th>
             </tr>
         </thead>
         <tbody>
@@ -23,10 +24,10 @@
                 <td>{{ art.id }}</td>
                 <td>{{ art.label }}</td>
                 <td>{{ art.description }}</td>
-                <td>{{ art.height }}</td>
+                <td>{{ art.height }} x {{ art.width }}</td>
                 <td>{{ art.artist }}</td>
                 <td>{{ art.price }}</td>
-                <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="test"></td>
+                <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="Tableau_{{art.label}}"></td>
                 <td>
                     <a href="{{ path('admin_art_show', {'id': art.id}) }}">show</a>
                     <a href="{{ path('admin_art_edit', {'id': art.id}) }}">edit</a>

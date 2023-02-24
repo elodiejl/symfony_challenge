@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Profil {{user.pseudo}}{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>{{user.pseudo}}</h1>
 
     <table class="table">
         <tbody>
@@ -13,7 +13,18 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                {% for role in user.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                            <span class="badge rounded-pill text-bg-primary">Admin</span>
+                        {% elseif role == 'ROLE_VENDOR'  %}
+                            <span class="badge rounded-pill text-bg-info">Vendeur</span>
+                        {% elseif role == 'ROLE_BUYER'%}
+                            <span class="badge rounded-pill text-bg-success">Acheteur</span>
+                        {% elseif role == 'ROLE_USER'  %}
+                            <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% endif %}
+                    {% endfor %}
             </tr>
             <tr>
                 <th>Firstname</th>
@@ -34,11 +45,9 @@
             <tr>
                 <th>Adress</th>
                 <td>
-                    {% for address in user.address  %}
-                        {{ address.number_street }}
-                        {{ address.name_street }}
-                        {{ address.local_code }}
-                    {% endfor %}
+                    {{user.address.getNumberStreet()}} 
+                    {{user.address.getNameStreet()}} 
+                    {{user.address.getLocalCode()}} 
                 </td>
             </tr>
             <tr>

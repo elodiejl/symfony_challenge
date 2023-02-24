@@ -239,6 +239,7 @@ footer{
 .notfound  a{
   text-decoration: none;
   color: black;
+  cursor: default;
 }
 .notfound > a{
   font-family: 'Courier New', Courier, monospace;
@@ -262,4 +263,26 @@ footer{
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+a.hidden {
+  color: rgba(255, 255, 255, 0) !important;
+}
+a.hidden:hover {
+  color: rgba(255, 255, 255, 0) !important;
+  text-decoration: none;
+  cursor: context-menu;
+}
+
+img.card-img-top {
+  height: 15rem;
+  width: 16.5rem;
+
+}
+.watermark {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  opacity: 0.6;
+  transform: rotate(45deg);
 }

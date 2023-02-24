@@ -36,7 +36,7 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_buyer_profile', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_buyer_profile', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('/buyer/profile/edit.html.twig', [

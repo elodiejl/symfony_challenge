@@ -13,8 +13,8 @@
                 <th>Pseudo</th>
                 <th>Email</th>
                 <th>Date de naissance</th>
-                <th>Role</th>
-                <th>Compte validé par l'utilisateur</th>
+                <th>Rôle</th>
+                <th>Mail Vérifié</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,8 +23,8 @@
 
 
             <tr>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname|upper }}</td>
+                <td>{{ user.lastname|upper }}</td>
                 <td>{{ user.pseudo }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.birthday ? user.birthday|date('d/m/Y') : '' }}</td>
@@ -36,23 +36,23 @@
                             <span class="badge rounded-pill text-bg-info">Vendeur</span>
                         {% elseif role == 'ROLE_BUYER'%}
                             <span class="badge rounded-pill text-bg-success">Acheteur</span>
-                        {% elseif role == 'ROLE_USER'  %}
+                        {% elseif role == 'ROLE_USER' and user.isVerified == false %}
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
                         {% endif %}
                     {% endfor %}
                 </td>
                 <td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-eye" title="Afficher"></i></a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
                     {% if user.expectation is same as true %}
                         <a class="btn btn-success " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Valider la demande vendeur</a>
                         <a class="btn btn-danger " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Refuser la demande vendeur</a>
                     {% endif %}
 
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button">Activer</a>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-eye" title="Afficher"></i></a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
