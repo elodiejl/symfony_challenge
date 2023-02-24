@@ -11,7 +11,7 @@
                 <th>#</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Height</th>
+                <th>Taille</th>
                 <th>Artiste</th>
                 <th>Prix</th>
                 <th>Oeuvre</th>
@@ -24,7 +24,7 @@
                 <td>{{ art.id }}</td>
                 <td>{{ art.label }}</td>
                 <td>{{ art.description }}</td>
-                <td>{{ art.height }}</td>
+                <td>{{ art.height }} x {{ art.height }}</td>
                 <td>{{ art.artist }}</td>
                 <td>{{ art.price }}</td>
                 <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="Tableau_{{art.label}}"></td>
