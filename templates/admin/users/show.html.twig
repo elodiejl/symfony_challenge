@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Profil {{user.pseudo}}{% endblock %}
 
 {% block body %}
     <h1>{{user.pseudo}}</h1>
@@ -13,7 +13,18 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                {% for role in user.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                            <span class="badge rounded-pill text-bg-primary">Admin</span>
+                        {% elseif role == 'ROLE_VENDOR'  %}
+                            <span class="badge rounded-pill text-bg-info">Vendeur</span>
+                        {% elseif role == 'ROLE_BUYER'%}
+                            <span class="badge rounded-pill text-bg-success">Acheteur</span>
+                        {% elseif role == 'ROLE_USER'  %}
+                            <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% endif %}
+                    {% endfor %}
             </tr>
             <tr>
                 <th>Firstname</th>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profil{% endblock %}
+{% block title %}Mon Profil ({{user.pseudo}}){% endblock %}
 
 {% block body %}
 
@@ -34,7 +34,7 @@
         </div>
     </nav>
 
-    <h1>{{user.pseudo}}</h1>
+    <h1>MON PROFIL</h1>
 
     <table class="table">
         <tbody>
@@ -47,15 +47,23 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
+                <th>Rôle</th>
                 <td>
-                {% for roles in user.roles  %}
-                    {{ roles ? roles : '' }}
+                {% for role in user.roles %}
+                    {% if role == 'ROLE_ADMIN' %}
+                        <span class="badge rounded-pill text-bg-primary">Admin</span>
+                    {% elseif role == 'ROLE_VENDOR'  %}
+                        <span class="badge rounded-pill text-bg-info">Vendeur</span>
+                    {% elseif role == 'ROLE_BUYER'%}
+                        <span class="badge rounded-pill text-bg-success">Acheteur</span>
+                    {% elseif role == 'ROLE_USER' and user.isVerified == false %}
+                        <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                    {% endif %}
                 {% endfor %}
                 </td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>Password (a retirer)</th>
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
@@ -83,11 +91,11 @@
                 </td>
             </tr>
             <tr>
-                <th>Is_verified</th>
+                <th>Is_verified (a retirer)</th>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>vendeur</th>
+                <th>vendeur (a retirer)</th>
                 <td>{{ user.expectation ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
@@ -97,7 +105,7 @@
     {% elseif user.expectation is same as false %}
         <a class="btn btn-primary" href="{{ path('app_buyer_vendor', {'id': user.id}) }}" role="button" aria-disabled="true">Devenir Vendeur</a>
     {% endif %}
-    <a href="{{ path('app_buyer_edit', {'id': user.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': user.id}) }}" role="button">Modifier mon Profil</a>
 
     {{ include('buyer/profile/_delete_form.html.twig') }}
 
