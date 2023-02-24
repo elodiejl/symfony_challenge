@@ -57,6 +57,7 @@
                                 <h5 class="card-title">{{  art.label }}</h5>
                                 <p class="card-text">{{ art.description }}</p>
                                 <p class="card-text">{{ art.height }} de hauteur</p>
+                                <p class="card-text">{{ art.width }} de largeur</p>
                                 <p class="card-text"> De {{ art.artist }} </p>
                                 <p class="card-text">{{ art.price }} € </p>
                                 <a href="{{ path('buyer_cart_add', {'id': art.id}) }}" class="btn btn-primary">Ajouter au panier</a>
@@ -68,6 +69,7 @@
                                     <h5 class="card-title">{{  art.label }}</h5>
                                     <p class="card-text">{{ art.description }}</p>
                                     <p class="card-text">{{ art.height }} de hauteur</p>
+                                    <p class="card-text">{{ art.width }} de largeur</p>
                                     <p class="card-text"> De {{ art.artist }} </p>
                                     <p class="card-text watermark">VENDUE!</p>
 

@@ -24,6 +24,9 @@ class Art
     #[ORM\Column(nullable: true)]
     private ?int $height = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $width = null;
+
     #[ORM\Column(length: 255)]
     private ?string $artist = null;
 
@@ -90,6 +93,18 @@ class Art
     public function setHeight(?int $height): self
     {
         $this->height = $height;
+
+        return $this;
+    }
+
+    public function Width(): ?int
+    {
+        return $this->width;
+    }
+
+    public function setWidth(?int $width): self
+    {
+        $this->width = $width;
 
         return $this;
     }
