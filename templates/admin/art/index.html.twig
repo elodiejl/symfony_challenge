@@ -25,9 +25,9 @@
                 <td>{{ art.id }}</td>
                 <td>{{ art.label }}</td>
                 <td>{{ art.description }}</td>
-                <td>{{ art.height }} x {{ art.width }}</td>
+                <td>{{ art.height }} cm x {{ art.width }} cm</td>
                 <td>{{ art.artist }}</td>
-                <td>{{ art.price }}</td>
+                <td>{{ art.price }} €</td>
                 <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="Tableau_{{art.label}}"></td>
                 <td>
                     <a href="{{ path('admin_art_show', {'id': art.id}) }}">show</a>
