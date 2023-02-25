@@ -23,13 +23,10 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('app_vendor_home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('buyer_cart_index')}}">Mes oeuvres</a>
+                        <a class="nav-link" href="#">Mes oeuvres</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Catalogue</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_buyer_profile', {'id': app.user.id}) }}">Mon profil</a>
+                        <a class="nav-link" href="{{ path('app_vendor_profile', {'id': app.user.id}) }}">Mon profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
@@ -39,51 +36,10 @@
         </div>
     </nav>
 
-    <h1>Catalogue des Oeuvres en vente</h1>
-
 
 
             <div class="container text-center">
-                <div class="row row-cols-3">
-                    {% for art in art %}
-
-                        <div class="card col m-3" style="width: 18rem;">
-                            <div class="oeuvreGalerie">
-                            <img src="{{ asset('uploads/arts/' ~ art.imageFile) }}" class="card-img-top" alt="...">
-                            {# <p class="watermark">watermark text </p> #}
-                            </div>
-                            {% if art.sold is same as false %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{  art.label }}</h5>
-                                <p class="card-text">{{ art.description }}</p>
-                                <p class="card-text">{{ art.height }} de hauteur</p>
-                                <p class="card-text">{{ art.width }} de largeur</p>
-                                <p class="card-text"> De {{ art.artist }} </p>
-                                <p class="card-text">{{ art.price }} € </p>
-                                <a href="{{ path('buyer_cart_add', {'id': art.id}) }}" class="btn btn-primary">Ajouter au panier</a>
-                                <a class="btn btn-primary" href="{{ path('app_art_show', {'id': art.id}) }}">Voir les détails</a>
-                            </div>
-                            {% endif %}
-                            {% if art.sold is same as true %}
-                                <div class="card-body">
-                                    <h5 class="card-title">{{  art.label }}</h5>
-                                    <p class="card-text">{{ art.description }}</p>
-                                    <p class="card-text">{{ art.height }} de hauteur</p>
-                                    <p class="card-text">{{ art.width }} de largeur</p>
-                                    <p class="card-text"> De {{ art.artist }} </p>
-                                    <p class="card-text watermark">VENDUE!</p>
-
-                                </div>
-                            {% endif %}
-                        </div>
-
-                    {% else %}
-                        <tr>
-                            <td colspan="7">no records found</td>
-                        </tr>
-                    {% endfor %}
-
-                </div>
+                <h1>Mon tableau de bord</h1>
             </div>
 
 {% endblock %}

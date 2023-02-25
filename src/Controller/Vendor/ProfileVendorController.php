@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-#[Route('/buyer/', name:'app_buyer_')]
+#[Route('/vendor/', name:'app_vendor_')]
 
 class ProfileVendorController extends AbstractController
 {
@@ -20,7 +20,7 @@ class ProfileVendorController extends AbstractController
     {
         $hashId = sha1($user->getId());
 
-        return $this->render('buyer/profile/show.html.twig', [
+        return $this->render('vendor/profile/show.html.twig', [
             'user' => $user,
 
         ]);
@@ -36,27 +36,16 @@ class ProfileVendorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_buyer_profile', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_vendor_profile', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('/buyer/profile/edit.html.twig', [
+        return $this->render('/vendor/profile/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
 
-    #[Route('{id}/vendor', name: 'vendor', methods: ['GET', 'POST'])]
-    public function becomeVendor(Request $request, User $user, UserRepository $userRepository): Response
-    {
-         $user->setExpectation(true);
 
-            $userRepository->save($user, true);
-
-
-        return $this->render('/buyer/profile/show.html.twig', [
-            'user' => $user
-        ]);
-    }
 
 
 }
