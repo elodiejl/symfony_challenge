@@ -18,7 +18,7 @@ class ArtFixtures extends Fixture implements DependentFixtureInterface
         $category = $manager->getRepository(Category::class)->findAll();
         $users = $manager->getRepository(User::class)->findAll();
 
-        $image = ['tableau1', 'tableau2', 'tableau3','sculpture1', 'sculpture2','newArt'];
+        $image = ['tableau1.png', 'tableau2.png', 'tableau3.png','sculpture1.png', 'sculpture2.png','newArt.png'];
 
         for ($i = 0; $i < 30; $i++){
             $object = (new Art())
