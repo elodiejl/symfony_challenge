@@ -42,14 +42,7 @@
                 <th>Pseudo</th>
                 <td>{{ user.pseudo }}</td>
             </tr>
-            <tr>
-                <th>Adress</th>
-                <td>
-                    {{user.address.getNumberStreet()}} 
-                    {{user.address.getNameStreet()}} 
-                    {{user.address.getLocalCode()}} 
-                </td>
-            </tr>
+
             <tr>
                 <th>Is_verified</th>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>

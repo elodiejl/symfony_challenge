@@ -9,3 +9,19 @@
 body {
     background-color: black !important;
 }
+
+.button-login{
+    border: none;
+    font-size: 18px;
+    background-color: rgba(white, 0);
+    border-radius: 8px;
+    color: white;
+    padding: 0.25rem 1rem;
+    font-family: regular-code;
+    transition: 100ms;
+    text-decoration: none;
+}
+.button-login:hover{
+    background-color: rgba(#ff914d, 0.7);
+    color: white;
+}

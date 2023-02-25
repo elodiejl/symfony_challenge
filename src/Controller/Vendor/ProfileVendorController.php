@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Buyer;
+namespace App\Controller\Vendor;
 
 use App\Entity\User;
 use App\Form\UserType;
