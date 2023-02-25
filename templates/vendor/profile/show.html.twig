@@ -48,7 +48,7 @@
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
                         {% endif %}
                     {% endfor %}
-                    <i class="far fa-edit mb-5"></i>
+                    <a class="text-bg-dark" href="{{ path('app_vendor_edit', {'id': user.id}) }}"><i class="far fa-edit mb-5"></i></a>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body p-4">
@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <h6>Actions</h6>
-                                <a class="btn btn-primary" href="{{ path('app_buyer_edit', {'id': user.id}) }}" role="button">Modifier mon Profil</a>
+                                {{ include('vendor/profile/_delete_form.html.twig') }}
                             </div>
                         </div>
 
@@ -81,7 +81,8 @@
 
 
 
-    {{ include('buyer/profile/_delete_form.html.twig') }}
+
+
 
 
 {% endblock %}
