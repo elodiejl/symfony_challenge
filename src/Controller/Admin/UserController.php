@@ -85,8 +85,7 @@ class UserController extends AbstractController
 
         $userRepository->save($user, true);
 
-
-        return $this->render('/admin/users/index.html.twig', [
+        return $this->render('/admin/users/show.html.twig', [
             'user' => $user
         ]);
     }
