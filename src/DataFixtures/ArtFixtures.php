@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Art;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -15,6 +16,7 @@ class ArtFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
         $category = $manager->getRepository(Category::class)->findAll();
+        $users = $manager->getRepository(User::class)->findAll();
 
         $image = ['tableau1', 'tableau2', 'tableau3','sculpture1', 'sculpture2','newArt'];
 
@@ -30,6 +32,7 @@ class ArtFixtures extends Fixture implements DependentFixtureInterface
                 ->setPrice($faker->randomFloat())
                 ->setSold($faker->boolean())
                 ->setWidth($faker->numberBetween(50, 1000))
+                ->setVendor($faker->randomElement($users)->getId())
                 ;
 
             $manager->persist($object);

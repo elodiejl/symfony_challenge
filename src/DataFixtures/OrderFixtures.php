@@ -18,12 +18,12 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $art = $manager->getRepository(Art::class)->findAll();
         $user = $manager->getRepository(User::class)->findAll();
         for ($i = 0; $i < 30; $i++){
-            $date_order = new \DateTime($faker->date('Y-m-d'));
-            $date_delivery = $faker->date('Y-m-d', strtotime($date_order. ' + 5 days'));
+            $date_order = new \DateTime($faker->date('Y-m-d', 'now'));
+            $date_delivery = new \DateTime($faker->date('Y-m-d'));
             $object = (new Order())
                 ->setArt($faker->randomElement($art))
-                ->setDateDelivery($date_delivery)
-                ->setDateOrder($date_order)
+                //->setDateDelivery(/*$date_delivery->format('Y-m-d')*/)
+                ->setDateOrder(new \DateTime())
                 ->setNumOrder($faker->numberBetween(100000, 999999))
                 ->setTotalPrice($faker->numberBetween(100, 100000))
                 ->setUser($faker->randomElement($user))

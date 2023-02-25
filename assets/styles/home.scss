@@ -288,3 +288,12 @@ img.card-img-top {
   transform: rotate(45deg);
 }
 
+.table-responsive {
+  max-height: 700px;
+  overflow: scroll;
+}
+
+th, thead{
+  position: sticky;
+  top: 0;
+}
