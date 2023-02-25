@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Liste des utilisateurs</h1>
 
-    <table  class=" table table-hover table-responsive">
+<div class="table-responsive">
+    <table  class=" table table-hover table-responsive table-dark">
         <thead>
             <tr>
                 <th>Prénom</th>
@@ -63,6 +64,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     <a href="{{ path('admin_user_new') }}" class="btn btn-sm btn-primary" role="button"><i class="bi bi-person-add"></i> Nouveau utilisateur</a>
 {% endblock %}

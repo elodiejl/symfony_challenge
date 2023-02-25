@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Buyer;
+namespace App\Controller\Vendor;
 
 use App\Repository\ArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

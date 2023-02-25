@@ -79,3 +79,17 @@ Installation npm
 
 `docker compose exec php npm run watch`
 
+Installation ChartJS
+
+`composer require symfony/ux-chartjs`
+
+ensuite lancez les deux commandes suivantes
+
+`docker compose exec php npm install --force`
+
+`docker compose exec php npm run watch`
+
+Installation fakerPHP
+`composer require fakerphp/faker`
+
+
