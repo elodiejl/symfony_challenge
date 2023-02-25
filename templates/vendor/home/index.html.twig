@@ -1,4 +1,4 @@
-{% extends '../../base.html.twig' %}
+{% extends './base.html.twig' %}
 
 {% block title %}Galerie d'arts{% endblock %}
 
@@ -40,6 +40,10 @@
 
             <div class="container text-center">
                 <h1>Mon tableau de bord</h1>
+
+                <a href="{{ path('vendor_art_new', {'id': app.user.id}) }}" type="button">Mettre une oeuvre en vente</a>
             </div>
+
+
 
 {% endblock %}
