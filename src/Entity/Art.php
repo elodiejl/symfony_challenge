@@ -49,6 +49,9 @@ class Art
     #[ORM\Column]
     private ?bool $sold = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $vendor = null;
+
 
 
     public function __construct()
@@ -207,6 +210,18 @@ class Art
     public function setSold(bool $sold): self
     {
         $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+
+    public function setVendor(string $vendor): self
+    {
+        $this->vendor = $vendor;
 
         return $this;
     }
