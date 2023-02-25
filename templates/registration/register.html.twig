@@ -24,7 +24,7 @@
                         {{ form_label(registrationForm.birthday,'Date de naissance') }}
 
                         <div class="datepicker date input-group">
-                            {{ form_widget(registrationForm.birthday, {'attr' : {'placeholder' : '01/01/2005'}}) }}
+                            {{ form_widget(registrationForm.birthday, {'attr' : {'placeholder' : ''}}) }}
                             <div class="input-group-text px-lg-4"><span ><i class="fa fa-calendar"></i></span></div>
                         </div>
 
@@ -50,7 +50,7 @@
                 isRTL: true,
                 autoclose: true,
                 language: 'fr',
-                format: "dd/mm/yyyy",
+                format: "yyyy-mm-dd",
                 clearBtn: true,
                 endDate: '-18y'
             });
