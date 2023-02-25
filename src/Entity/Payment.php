@@ -15,7 +15,7 @@ class Payment
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $num_card = null;
+    private ?string $num_card = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name_card = null;
@@ -31,12 +31,12 @@ class Payment
         return $this->id;
     }
 
-    public function getNumCard(): ?int
+    public function getNumCard(): ?string
     {
         return $this->num_card;
     }
 
-    public function setNumCard(int $num_card): self
+    public function setNumCard(string $num_card): self
     {
         $this->num_card = $num_card;
 

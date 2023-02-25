@@ -52,7 +52,7 @@
                 <td>
                     {% if user.expectation is same as true %}
                         <a class="btn btn-sm btn-success " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true"><i class="bi bi-check" title="Valider la demande vendeur"></i></a>
-                        <a class="btn btn-sm btn-danger " href="{{ path('admin_user_vendor', {'id': user.id}) }}" role="button" aria-disabled="true"><i class="bi bi-x" title="Refuser la demande vendeur"></i></a>
+                        <a class="btn btn-sm btn-danger " href="{{ path('admin_user_delete', {'id': user.id}) }}" role="button" aria-disabled="true"><i class="bi bi-x" title="Refuser la demande vendeur"></i></a>
                     {% endif %}
                 </td>
             </tr>
