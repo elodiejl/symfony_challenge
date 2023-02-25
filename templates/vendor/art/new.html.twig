@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Art{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle oeuvre au catalogue</h1>
+
+    {{ include('vendor/art/_form.html.twig') }}
+
+    <a href="{{ path('app_vendor_home') }}">Revenir au dashboard</a>
+{% endblock %}

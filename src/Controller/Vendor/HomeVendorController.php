@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Buyer;
+namespace App\Controller\Vendor;
 
 use App\Repository\ArtRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,9 +12,7 @@ class HomeVendorController extends AbstractController
     #[Route('/vendor/home', name: 'app_vendor_home', methods: ['GET'])]
     public function index(ArtRepository $artRepository): Response
     {
-        return $this->render('vendor/home/index.html.twig', [
-            'art' => $artRepository->findAll(),
-        ]);
+        return $this->render('vendor/home/index.html.twig');
     }
 
 }
