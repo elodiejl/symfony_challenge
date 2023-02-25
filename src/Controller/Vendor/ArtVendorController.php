@@ -3,8 +3,10 @@
 namespace App\Controller\Vendor;
 
 use App\Entity\Art;
+use App\Entity\User;
 use App\Form\ArtType;
 use App\Repository\ArtRepository;
+use App\Repository\UserRepository;
 use App\Service\PictureUpload;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,30 +23,28 @@ class ArtVendorController extends AbstractController
     /**
      * @throws Exception
      */
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ArtRepository $artRepository, PictureUpload $pictureUpload, SluggerInterface $slugger): Response
+    #[Route('/new/{id}', name: 'new', methods: ['GET', 'POST'])]
+    public function new(User $user, Request $request, ArtRepository $artRepository, PictureUpload $pictureUpload): Response
     {
         $art = new Art();
         $form = $this->createForm(ArtType::class, $art);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-
             $picture = $form->get('imageFile')->getData();
-            $art->setVendor($this->getUser());
-            dd($art);
 
+            $art->setVendor($user->getId());
 
             if ($picture) {
                 $pictureFileName = $pictureUpload->upload($picture);
                 $art->setImageFile($pictureFileName);
             }
             $artRepository->save($art, true);
-            return $this->redirectToRoute('admin_art_index', [], Response::HTTP_SEE_OTHER);
-            // ... persist the $product variable or any other work
+            return $this->redirectToRoute('app_vendor_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/art/new.html.twig', [
+        return $this->render('vendor/art/new.html.twig', [
             'art' => $art,
             'form' => $form,
         ]);
