@@ -20,7 +20,6 @@ class ArtType extends AbstractType
             ->add('width')
             ->add('artist')
             ->add('price')
-            ->add('category')
             ->add('sold', ChoiceType::class, [
                 'choices'  => [
                     'Mettre en vente' => false,
