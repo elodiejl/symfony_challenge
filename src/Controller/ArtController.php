@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Art;
+use App\Entity\Comments;
 use App\Form\ArtType;
+use App\Form\CommentsType;
 use App\Repository\ArtRepository;
+use App\Repository\CommentsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/art')]
 class ArtController extends AbstractController
 {
+    public function __construct(private EntityManagerInterface $entityManager,)
+    {
+
+    }
     #[Route('/', name: 'app_art_index', methods: ['GET'])]
     public function index(ArtRepository $artRepository): Response
     {
         return $this->render('art/index.html.twig', [
-            'art' => $artRepository->findAll(),
+            'art' => $artRepository->findAll()
         ]);
     }
 
@@ -43,11 +51,24 @@ class ArtController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_art_show', methods: ['GET'])]
-    public function show(Art $art): Response
+    #[Route('/{id}', name: 'app_art_show', methods: ['GET', 'POST'])]
+    public function show(Art $art, Request $request, CommentsRepository $commentsRepository): Response
     {
+        $comments = $commentsRepository->findBy(['art'=>$art->getId()]);
+        $comment = new Comments();
+        $form = $this->createForm(CommentsType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setArt($art);
+            $commentsRepository->save($comment,true);
+
+            return $this->redirectToRoute('app_art_show', ['id' => $art->getId()]);
+        }
+
         return $this->render('art/show.html.twig', [
             'art' => $art,
+            'comments' => $comments,
+            'comment_form' => $form,
         ]);
     }
 
