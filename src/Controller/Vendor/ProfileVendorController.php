@@ -15,19 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileVendorController extends AbstractController
 {
-    #[Route('profile/{id}', name: 'profile', methods: ['GET'])]
+    #[Route('profile', requirements: ['id' => '\d+'], name: 'profile', methods: ['GET'])]
     public function index(User $user): Response
     {
-        $hashId = sha1($user->getId());
 
         return $this->render('vendor/profile/show.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
 
         ]);
 
     }
 
-    #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -40,7 +39,7 @@ class ProfileVendorController extends AbstractController
         }
 
         return $this->render('/vendor/profile/edit.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
             'form' => $form,
         ]);
     }
