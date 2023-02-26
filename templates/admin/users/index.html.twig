@@ -42,6 +42,8 @@
                             <span class="badge rounded-pill text-bg-warning">Utilisateur en attente de vérification de mail</span>
                         {% elseif role == 'ROLE_USER' and user.expectation == true %}
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% elseif role == 'ROLE_USER' and user.isVerified == true and user.expectation == false and user.roles|length == 1%}
+                            <span class="badge rounded-pill text-bg-secondary">Utilisateur</span>
                         {% endif %}
                     {% endfor %}
                 </td>
@@ -66,7 +68,4 @@
     </table>
 </div>
 
-    <div>
-        <a href="{{ path('admin_user_new') }}" class="btn btn-sm btn-primary" role="button"><i class="bi bi-person-add"></i> Nouveau utilisateur</a>
-    </div>
 {% endblock %}

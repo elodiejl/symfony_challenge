@@ -12,6 +12,7 @@ class HomeController extends AbstractController
     #[Route('/buyer/home', name: 'app_buyer_home', methods: ['GET'])]
     public function index(ArtRepository $artRepository): Response
     {
+
         return $this->render('buyer/home/index.html.twig', [
             'art' => $artRepository->findAll(),
         ]);

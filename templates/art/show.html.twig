@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
+{% form_theme comment_form 'bootstrap_5_horizontal_layout.html.twig' %}
 
 {% block title %}Art{% endblock %}
 
 {% block body %}
     <h1>Art</h1>
 
-    <table class="table">
+    <div class="text-center">
+        <img src="{{ asset('uploads/arts/' ~ art.imageFile) }}" class="rounded w-25" alt="...">
+    </div>
+
+    <table class="table table-dark">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ art.id }}</td>
-            </tr>
             <tr>
                 <th>Label</th>
                 <td>{{ art.label }}</td>
@@ -20,27 +21,42 @@
                 <td>{{ art.description }}</td>
             </tr>
             <tr>
-                <th>Height</th>
+                <th>Hauteur</th>
                 <td>{{ art.height }}</td>
             </tr>
             <tr>
-                <th>Width</th>
+                <th>Largeur</th>
                 <td>{{ art.width }}</td>
             </tr>
             <tr>
-                <th>Artist</th>
+                <th>Artiste</th>
                 <td>{{ art.artist }}</td>
             </tr>
             <tr>
-                <th>Price</th>
-                <td>{{ art.price }}</td>
+                <th>Prix</th>
+                <td>{{ art.price }}€</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_art_index') }}">back to list</a>
+    <h2>Commentaires</h2>
 
-    <a href="{{ path('app_art_edit', {'id': art.id}) }}">edit</a>
+    <ul>
+    {% for comment in comments %}
+        <li> {{ comment.message }}</li>
+    {% endfor %}
+    </ul>
 
-    {{ include('art/_delete_form.html.twig') }}
+    <h2>Ajouter un commentaire</h2>
+
+    {{ form(comment_form) }}
+
+    <a href="{{ path('app_art_index') }}">Retour à la liste</a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_art_edit', {'id': art.id}) }}">Modifier</a>
+        {{ include('art/_delete_form.html.twig') }}
+    {% endif %}
+
+
 {% endblock %}
