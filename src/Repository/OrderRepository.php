@@ -39,6 +39,21 @@ class OrderRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Order[] Returns an array of Order objects
+    */
+    public function findByMonth(): array
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.date_delivery >= :val')
+            ->setParameter('val', new \DateTime('-1 month'))
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */

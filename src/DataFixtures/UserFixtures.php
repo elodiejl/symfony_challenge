@@ -16,6 +16,9 @@ class UserFixtures extends Fixture
         // pwd: test
         $pwd = '$2y$13$wiWVplNfdpwyWjWFdTtY..TQvVVHDVkv/PEUtf7dSlvmC2KiqlJHq';
 
+        //pwdacheteur: acheteurrounorama
+        $pwd2 = '$2y$10$ZbSFBklzBUSn2hQi4GC1Qegy6OfJQtowtne5tqtEP/MIbB9lRpuMm';
+
         $address = $manager->getRepository(Address::class)->findAll();
 
         $object = (new User())
@@ -32,29 +35,44 @@ class UserFixtures extends Fixture
         ;
         $manager->persist($object);
 
-        for ($i=0; $i<2; $i++) {
+        for ($i=0; $i<5; $i++) {
             $object = (new User())
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->email)
-                ->setPassword(password_hash($faker->password(), PASSWORD_BCRYPT))
+                ->setPassword(password_hash('utilisateurrounorama', PASSWORD_BCRYPT ))
                 ->setBirthday(new \DateTime($faker->date('Y-m-d', '2005-01-01')))
                 ->setPseudo($faker->userName)
-                ->setIsVerified(false)
+                ->setIsVerified(true)
                 ->setExpectation(false)
                 ->setAddress($faker->randomElement($address))
             ;
             $manager->persist($object);
         }
 
+        for ($i=0; $i<5; $i++) {
+            $object = (new User())
+                ->setFirstname($faker->firstName)
+                ->setLastname($faker->lastName)
+                ->setEmail($faker->email)
+                ->setPassword(password_hash('utilisateurrounorama', PASSWORD_BCRYPT ))
+                ->setBirthday(new \DateTime($faker->date('Y-m-d', '2005-01-01')))
+                ->setPseudo($faker->userName)
+                ->setIsVerified(true)
+                ->setExpectation(true)
+                ->setAddress($faker->randomElement($address))
+            ;
+            $manager->persist($object);
+        }
 
-        for ($i=0; $i<2; $i++) {
+
+        for ($i=0; $i<20; $i++) {
             $pwd = $faker->password();
             $object = (new User())
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->email)
-                ->setPassword(password_hash($pwd, PASSWORD_BCRYPT ))
+                ->setPassword(password_hash('vendeurrounorama', PASSWORD_BCRYPT ))
                 ->setBirthday(new \DateTime($faker->date('Y-m-d', '2005-01-01')))
                 ->setPseudo($faker->userName)
                 ->setRoles(['ROLE_USER','ROLE_VENDOR'])
@@ -65,12 +83,12 @@ class UserFixtures extends Fixture
             $manager->persist($object);
         }
 
-        for ($i=0; $i<2; $i++) {
+        for ($i=0; $i<40; $i++) {
             $object = (new User())
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->email)
-                ->setPassword(password_hash($faker->password(),PASSWORD_BCRYPT))
+                ->setPassword($pwd2)
                 ->setBirthday(new \DateTime($faker->date('Y-m-d', '2005-01-01')))
                 ->setPseudo($faker->userName)
                 ->setRoles(['ROLE_USER','ROLE_BUYER'])

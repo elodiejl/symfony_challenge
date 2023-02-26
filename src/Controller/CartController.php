@@ -23,14 +23,16 @@ class CartController extends AbstractController
         $cart = $session->get("cart", []);
         $dataCart= [];
         $total = 0;
-
+        // Listing des articles
         foreach ($cart as $id => $quantity){
             $art = $artRepository->find($id);
             $dataCart[] = [
                 "oeuvre" => $art,
                 "quantity" => $quantity
             ];
-            $total += $art->getPrice() * $quantity;
+            // Definition du Total à payer. 
+            // Amélioration possible si des articles ne sont pas unique (* $quantity)
+            $total += $art->getPrice() ;
         };
 
         return $this->render('buyer/cart/index.html.twig', compact("dataCart", "total"));
@@ -41,11 +43,12 @@ class CartController extends AbstractController
     {
         $cart = $session->get("cart", []);
         $id = $art->getId();
-        if(!empty($cart[$id])){
-            $cart[$id]++;
-        } else {
+
+        // Si l'article n'existe pas l'ajouter au Panier
+        // Si il y a plus d'une fois la même oeuvre unique remettre l'êtat initial
+        if(empty($cart[$id]) or $cart[$id] > 1){
             $cart[$id] = 1;
-        };
+        }
 
         $session->set("cart", $cart);
 
@@ -105,6 +108,7 @@ class CartController extends AbstractController
             "source" => $request->request->get('stripeToken'),
             "description" => "Binaryboxtuts Payment Test"
         ]);
+
         $this->addFlash(
             'success',
             "` Paiement validé : {$total} € au total`"

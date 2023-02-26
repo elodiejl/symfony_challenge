@@ -24,6 +24,9 @@ class Art
     #[ORM\Column(nullable: true)]
     private ?int $height = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $width = null;
+
     #[ORM\Column(length: 255)]
     private ?string $artist = null;
 
@@ -45,6 +48,9 @@ class Art
 
     #[ORM\Column]
     private ?bool $sold = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $vendor = null;
 
 
 
@@ -90,6 +96,18 @@ class Art
     public function setHeight(?int $height): self
     {
         $this->height = $height;
+
+        return $this;
+    }
+
+    public function Width(): ?int
+    {
+        return $this->width;
+    }
+
+    public function setWidth(?int $width): self
+    {
+        $this->width = $width;
 
         return $this;
     }
@@ -192,6 +210,18 @@ class Art
     public function setSold(bool $sold): self
     {
         $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+
+    public function setVendor(string $vendor): self
+    {
+        $this->vendor = $vendor;
 
         return $this;
     }

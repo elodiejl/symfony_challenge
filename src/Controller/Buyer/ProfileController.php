@@ -15,46 +15,44 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('profile/{id}', name: 'profile', methods: ['GET'])]
-    public function index(User $user): Response
+    #[Route('profile', requirements: ['id' => '\d+'], name: 'profile', methods: ['GET'])]
+    public function index(): Response
     {
-        $hashId = sha1($user->getId());
-
         return $this->render('buyer/profile/show.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
 
         ]);
 
     }
 
-    #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    #[Route('edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, UserRepository $userRepository): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $userRepository->save($this->getUser(), true);
 
-            return $this->redirectToRoute('app_buyer_profile', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_buyer_profile');
         }
 
         return $this->render('/buyer/profile/edit.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
             'form' => $form,
         ]);
     }
 
-    #[Route('{id}/vendor', name: 'vendor', methods: ['GET', 'POST'])]
-    public function becomeVendor(Request $request, User $user, UserRepository $userRepository): Response
+    #[Route('vendor', name: 'vendor', methods: ['GET', 'POST'])]
+    public function becomeVendor(Request $request, UserRepository $userRepository): Response
     {
-         $user->setExpectation(true);
+        $this->getUser()->setExpectation(true);
 
-            $userRepository->save($user, true);
+            $userRepository->save($this->getUser(), true);
 
 
         return $this->render('/buyer/profile/show.html.twig', [
-            'user' => $user
+            'user' => $this->getUser()
         ]);
     }
 

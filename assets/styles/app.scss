@@ -7,10 +7,24 @@
 
 
 body {
-    background-color: white;
+    color: white!important;
+    background-color: #15202B !important;
+    .card-vendor{
+        background-color: #3B556D !important ;
+    }
+}
+
+nav{
+    color:white;
 }
 
 .image-src{
     max-height: 200px;
     max-width: 200px;
+}
+
+.first-div-vendor{
+    background-color: #3B556D ;
+    padding: 0.5rem 1rem ;
+    border-radius: 6px;
 }

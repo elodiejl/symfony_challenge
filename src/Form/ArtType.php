@@ -17,9 +17,9 @@ class ArtType extends AbstractType
             ->add('label')
             ->add('description')
             ->add('height')
+            ->add('width')
             ->add('artist')
             ->add('price')
-            ->add('category')
             ->add('sold', ChoiceType::class, [
                 'choices'  => [
                     'Mettre en vente' => false,
