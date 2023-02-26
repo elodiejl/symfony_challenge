@@ -42,6 +42,8 @@
                             <span class="badge rounded-pill text-bg-warning">Utilisateur en attente de vérification de mail</span>
                         {% elseif role == 'ROLE_USER' and user.expectation == true %}
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% elseif role == 'ROLE_USER' and user.isVerified == true and user.expectation == false and user.roles|length == 1%}
+                            <span class="badge rounded-pill text-bg-secondary">Utilisateur</span>
                         {% endif %}
                     {% endfor %}
                 </td>
