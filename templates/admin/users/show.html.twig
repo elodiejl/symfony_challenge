@@ -21,8 +21,12 @@
                             <span class="badge rounded-pill text-bg-info">Vendeur</span>
                         {% elseif role == 'ROLE_BUYER'%}
                             <span class="badge rounded-pill text-bg-success">Acheteur</span>
-                        {% elseif role == 'ROLE_USER'  %}
+                        {% elseif role == 'ROLE_USER' and user.isVerified == false %}
+                            <span class="badge rounded-pill text-bg-warning">Utilisateur en attente de vérification de mail</span>
+                        {% elseif role == 'ROLE_USER' and user.expectation == true %}
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
+                        {% elseif role == 'ROLE_USER' and user.isVerified == true and user.expectation == false and user.roles|length == 1%}
+                            <span class="badge rounded-pill text-bg-secondary">Utilisateur</span>
                         {% endif %}
                     {% endfor %}
             </tr>
