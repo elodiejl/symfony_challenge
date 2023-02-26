@@ -108,6 +108,7 @@ class CartController extends AbstractController
             "source" => $request->request->get('stripeToken'),
             "description" => "Binaryboxtuts Payment Test"
         ]);
+
         $this->addFlash(
             'success',
             "` Paiement validé : {$total} € au total`"
