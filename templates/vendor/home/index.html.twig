@@ -23,9 +23,6 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('app_vendor_home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mes oeuvres</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_vendor_profile', {'id': app.user.id}) }}">Mon profil</a>
                     </li>
                     <li class="nav-item">
@@ -40,9 +37,85 @@
 
             <div class="container text-center">
                 <h1>Mon tableau de bord</h1>
+                <a class=" btn btn-outline-light mt-5" href="{{ path('vendor_art_new', {'id': app.user.id}) }}" type="button">Mettre une oeuvre en vente</a>
 
-                <a href="{{ path('vendor_art_new', {'id': app.user.id}) }}" type="button">Mettre une oeuvre en vente</a>
             </div>
+
+
+    <div class="d-flex justify-content-evenly mt-5">
+
+    <div class="first-div-vendor">
+        <h4>Mes oeuvres sur le marché</h4>
+        {% for oeuvre in art %}
+
+            {% if app.user.id == oeuvre.vendor %}
+                {% if oeuvre.sold is same as false %}
+                    <div>
+
+                        <div class="card text-bg-dark mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('uploads/arts/' ~ oeuvre.imageFile) }}" class="img-fluid rounded-start" alt="nom de l'oeuvre">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ oeuvre.label }}</h5>
+                                        <p class="card-text">{{ oeuvre.description }}</p>
+                                        <p class="card-text"><small class="text-muted">{{ oeuvre.price }} €</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+        {% endfor %}
+    </div>
+        <div class="first-div-vendor">
+            <h4>Mes ventes</h4>
+            {% for oeuvre in art %}
+                {% if app.user.id == oeuvre.vendor and oeuvre.sold is same as true %}
+                    <div>
+
+                        <div class=" card text-bg-dark mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('uploads/arts/' ~ oeuvre.imageFile) }}" class="img-fluid rounded-start" alt="nom de l'oeuvre">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ oeuvre.label }}</h5>
+                                        <p class="card-text">{{ oeuvre.description }}</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+            <div class=" card text-bg-dark mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ asset('pictories/colors.jpg') }}" class="img-fluid rounded-start" alt="nom de l'oeuvre">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Ma prochaine oeuvre vendue</h5>
+                            <p class="card-text">L'oeuvre apparaitra ici</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
 
 
 

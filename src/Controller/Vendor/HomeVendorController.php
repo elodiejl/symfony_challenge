@@ -12,7 +12,10 @@ class HomeVendorController extends AbstractController
     #[Route('/vendor/home', name: 'app_vendor_home', methods: ['GET'])]
     public function index(ArtRepository $artRepository): Response
     {
-        return $this->render('vendor/home/index.html.twig');
+
+        return $this->render('vendor/home/index.html.twig', [
+            'art' => $artRepository->findAll(),
+        ]);
     }
 
 }

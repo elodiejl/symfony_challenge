@@ -9,6 +9,9 @@
 body {
     color: white!important;
     background-color: #15202B !important;
+    .card-vendor{
+        background-color: #3B556D !important ;
+    }
 }
 
 nav{
@@ -20,3 +23,8 @@ nav{
     max-width: 200px;
 }
 
+.first-div-vendor{
+    background-color: #3B556D ;
+    padding: 0.5rem 1rem ;
+    border-radius: 6px;
+}
