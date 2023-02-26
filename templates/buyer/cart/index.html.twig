@@ -18,10 +18,10 @@
                         <a class="nav-link active" href="{{ path('buyer_cart_index')}}">Panier</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Catalogue</a>
+                        <a class="nav-link" href="{{ path('app_buyer_home')}}">Catalogue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_buyer_profile', {'id': app.user.id}) }}">Mon profil</a>
+                        <a class="nav-link" href="{{ path('app_buyer_profile') }}">Mon profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>

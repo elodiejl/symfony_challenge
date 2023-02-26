@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/buyer/home', name: 'app_buyer_home', methods: ['GET'])]
+    #[Route('/buyer', name: 'app_buyer_home', methods: ['GET'])]
     public function index(ArtRepository $artRepository): Response
     {
 

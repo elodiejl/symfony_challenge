@@ -17,7 +17,7 @@
                         <a class="nav-link " aria-current="page" href="{{ path('app_vendor_home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('app_vendor_profile', {'id': app.user.id}) }}">Mon profil</a>
+                        <a class="nav-link active" href="{{ path('app_vendor_profile') }}">Mon profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
@@ -48,7 +48,7 @@
                             <span class="badge rounded-pill text-bg-light">Utilisateur à valider</span>
                         {% endif %}
                     {% endfor %}
-                    <a class="text-bg-dark" href="{{ path('app_vendor_edit', {'id': user.id}) }}"><i class="far fa-edit mb-5"></i></a>
+                    <a class="text-bg-dark" href="{{ path('app_vendor_edit') }}"><i class="far fa-edit mb-5"></i></a>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body p-4">
