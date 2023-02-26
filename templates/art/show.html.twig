@@ -51,7 +51,7 @@
 
     {{ form(comment_form) }}
 
-    <a href="{{ path('app_art_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_buyer_home') }}">Retour à la liste</a>
 
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('app_art_edit', {'id': art.id}) }}">Modifier</a>

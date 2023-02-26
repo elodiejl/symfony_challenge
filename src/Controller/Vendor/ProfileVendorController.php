@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileVendorController extends AbstractController
 {
     #[Route('profile', requirements: ['id' => '\d+'], name: 'profile', methods: ['GET'])]
-    public function index(User $user): Response
+    public function index(): Response
     {
 
         return $this->render('vendor/profile/show.html.twig', [
@@ -27,15 +27,15 @@ class ProfileVendorController extends AbstractController
     }
 
     #[Route('edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, UserRepository $userRepository): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $userRepository->save($this->getUser(), true);
 
-            return $this->redirectToRoute('app_vendor_profile', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_vendor_profile');
         }
 
         return $this->render('/vendor/profile/edit.html.twig', [
