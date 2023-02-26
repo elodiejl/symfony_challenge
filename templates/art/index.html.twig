@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Art index</h1>
 
-    <table class="table">
+    <div class="table-responsive">
+    <table class="table table-dark">
         <thead>
             <tr>
                 <th>Id</th>
@@ -40,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
     <a href="{{ path('admin_art_new') }}">Create new</a>
 {% endblock %}

@@ -26,7 +26,7 @@ class UserType extends AbstractType
             ])
             ->add('pseudo', TextType::class)
             //->add('is_verified')
-            ->add('expectation', TextType::class)
+            //->add('expectation', TextType::class)
             ->add('address', AddressType::class)
 
         ;
