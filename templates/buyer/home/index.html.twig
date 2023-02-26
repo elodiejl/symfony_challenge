@@ -11,9 +11,9 @@
 
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-dark text-bg-dark navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid text-bg-dark">
+            <a class="navbar-brand" href="#">Rounonrama</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,12 +39,12 @@
         </div>
     </nav>
 
-    <h1>Catalogue des Oeuvres en vente</h1>
+    <h3 class="text-center m-5">Catalogue des Oeuvres en vente</h3>
 
 
 
-            <div class="container text-center">
-                <div class="row row-cols-3">
+            <div class="container justify-content-center text-center">
+                <div class="row justify-content-center">
                     {% for art in art %}
 
                         <div class="card text-white bg-dark col m-3" style="width: 18rem;">
@@ -56,8 +56,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{  art.label }}</h5>
                                 <p class="card-text">{{ art.description }}</p>
-                                <p class="card-text">{{ art.height }} de hauteur</p>
-                                <p class="card-text">{{ art.width }} de largeur</p>
+                                <p class="card-text">{{ art.height }} cm de hauteur</p>
+                                <p class="card-text">{{ art.width }} cm de largeur</p>
                                 <p class="card-text"> De {{ art.artist }} </p>
                                 <p class="card-text">{{ art.price }} € </p>
                                 <a href="{{ path('buyer_cart_add', {'id': art.id}) }}" class="btn btn-primary">Ajouter au panier</a>

@@ -3,44 +3,32 @@
 {% block title %}Art{% endblock %}
 
 {% block body %}
-    <h1>Art</h1>
+    <h3 class="text-center mt-5">{{ art.label }}</h3>
 
-    <table class="table table-dark">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ art.id }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
-                <td>{{ art.label }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ art.description }}</td>
-            </tr>
-            <tr>
-                <th>Height</th>
-                <td>{{ art.height }}</td>
-            </tr>
-            <tr>
-                <th>Width</th>
-                <td>{{ art.width }}</td>
-            </tr>
-            <tr>
-                <th>Artist</th>
-                <td>{{ art.artist }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ art.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <a class="mx-5 btn btn-outline-light" href="{{ path('admin_art_index') }}">Revenir au répertoire</a>
 
-    <a href="{{ path('admin_art_index') }}">back to list</a>
 
-    <a href="{{ path('admin_art_edit', {'id': art.id}) }}">edit</a>
+
+    <div class="justify-content-center mt-5 m-5 row row-cols-1 row-cols-md-2 g-5">
+            <div class="col">
+                <div class="card text-center d-flex text-bg-dark">
+                    <img src="{{ asset('uploads/arts/' ~ art.imageFile) }}" class="card-img" alt="vente">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ art.label }}</h5>
+                        <p class="card-text">{{ art.height }} cm x {{ art.width }} cm</p>
+                        <p class="card-text">{{ art.artist }}</p>
+                        <p class="card-text">{{ art.description }}</p>
+                        <p class="card-text">Vendu par le vendeur qui a l'ID {{ art.vendor }}</p>
+                        <p class="card-text">{{ art.price }} €</p>
+                        <a href="{{ path('admin_art_edit', {'id': art.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
 
     {{ include('admin/art/_delete_form.html.twig') }}
 {% endblock %}

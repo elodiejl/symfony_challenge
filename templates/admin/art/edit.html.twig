@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 
 {% block title %}Edit Art{% endblock %}
 
 {% block body %}
-    <h1>Edit Art</h1>
+    <h3 class="text-center">Modifier l'oeuvre</h3>
 
-    {{ include('art/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container-sm mt-5">
+        {{ include('art/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('admin_art_index') }}">back to list</a>
+        <a class="mt-3 btn btn-outline-light" href="{{ path('admin_art_index') }}">Revenir à la liste</a>
 
-    {{ include('admin/art/_delete_form.html.twig') }}
+        {{ include('admin/art/_delete_form.html.twig') }}
+    </div>
+
 {% endblock %}

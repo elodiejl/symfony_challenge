@@ -3,45 +3,26 @@
 {% block title %}Galerie d'art{% endblock %}
 
 {% block body %}
-    <h1>Catalogue Oeuvre d'Art</h1>
+    <h3 class="text-center mt-5">Oeuvres répertoriées</h3>
 
-    <div class="table-responsive">
-    <table class="table table-dark table-responsive">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Taille</th>
-                <th>Artiste</th>
-                <th>Prix</th>
-                <th>Oeuvre</th>
-                <th>Droits</th>
-            </tr>
-        </thead>
-        <tbody>
+
+    <div class="m-5 row row-cols-1 row-cols-md-2 g-5">
         {% for art in art %}
-            <tr>
-                <td>{{ art.id }}</td>
-                <td>{{ art.label }}</td>
-                <td>{{ art.description }}</td>
-                <td>{{ art.height }} x {{ art.width }}</td>
-                <td>{{ art.artist }}</td>
-                <td>{{ art.price }}</td>
-                <td><img class="image-src" src="{{ asset('uploads/arts/' ~ art.imageFile) }}" alt="Tableau_{{art.label}}"></td>
-                <td>
-                    <a href="{{ path('admin_art_show', {'id': art.id}) }}">show</a>
-                    <a href="{{ path('admin_art_edit', {'id': art.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
+        <div class="col">
+            <div class="card text-center d-flex text-bg-dark">
+                <img src="{{ asset('uploads/arts/' ~ art.imageFile) }}" class="card-img" alt="vente">
+                <div class="card-body">
+                    <h5 class="card-title">{{ art.label }}</h5>
+                    <p class="card-text">{{ art.height }} cm x {{ art.width }} cm</p>
+                    <p class="card-text">{{ art.artist }}</p>
+                    <p class="card-text">{{ art.price }} €</p>
+                    <a href="{{ path('admin_art_show', {'id': art.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-eye" title="Afficher"></i></a>
+                    <a href="{{ path('admin_art_edit', {'id': art.id}) }}" class="btn btn-sm btn-light" role="button"><i class="bi bi-pencil-square" title="Modifier"></i></a>
 
-    <a href="{{ path('admin_art_new') }}">Create new</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+
 {% endblock %}
